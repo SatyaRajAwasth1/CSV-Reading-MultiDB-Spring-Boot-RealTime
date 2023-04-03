@@ -52,7 +52,8 @@ public class ProductFileServiceImpl implements ProductFileService{
     }
 
     @Scheduled(fixedRate = 120000) // repeats task automatically within 2 minutes
-    // use fixedDelay to repeat the task after two minutes of first task finishedgit stat
+    // use fixedDelay to repeat the task after two minutes of first task finished
+    // use fixedDelay with time of 1 minute or around to see the status pending, processing and completed for file config.
     void processFile(){
         List<ProductFile> productFileList = productFileRepository.findAllByStatus(FileStatus.PENDING);
         for (ProductFile productFile : productFileList) {
