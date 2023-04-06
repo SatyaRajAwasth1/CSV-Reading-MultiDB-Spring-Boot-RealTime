@@ -6,6 +6,7 @@ import np.com.esewa.learn.sampleapplication.inventory.model.Product;
 
 import java.util.List;
 
+
 public interface ProductService {
 
     List<Product> readProductDataFromFile(String filePath);
