@@ -9,6 +9,8 @@ import np.com.esewa.learn.sampleapplication.filedetails.model.ProductFile;
 import np.com.esewa.learn.sampleapplication.filedetails.repository.ProductFileRepository;
 import np.com.esewa.learn.sampleapplication.inventory.model.Product;
 import np.com.esewa.learn.sampleapplication.inventory.service.ProductService;
+import np.com.esewa.learn.sampleapplication.thirdpartyservices.resources.NotifyDto;
+import np.com.esewa.learn.sampleapplication.thirdpartyservices.service.UserNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,8 @@ public class ProductFileServiceImpl implements ProductFileService{
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private UserNotificationService userNotificationService;
     @Override
     public void saveFile(FileDetailsRequestDto fileDetailsRequestDto) {
         ProductFile productFile = new ProductFile();
@@ -67,6 +71,13 @@ public class ProductFileServiceImpl implements ProductFileService{
            // file processing completed
            productFile.setStatus(FileStatus.COMPLETED);
            productFileRepository.save(productFile);
+
+            NotifyDto notifyDto = new NotifyDto();
+            notifyDto.setFAIL_COUNT(productFile.getFAIL_COUNT());
+            notifyDto.setSUCCESS_COUNT(productFile.getSUCCESS_COUNT());
+            notifyDto.setCsvFileName(productFile.getFilePath());
+            userNotificationService.notify(notifyDto); // sending user notification
+
         }
 
     }
