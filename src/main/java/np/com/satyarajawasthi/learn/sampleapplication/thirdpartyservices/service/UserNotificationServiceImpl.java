@@ -1,9 +1,9 @@
-package np.com.esewa.learn.sampleapplication.thirdpartyservices.service;
+package np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.service;
 
-import np.com.esewa.learn.sampleapplication.thirdpartyservices.model.UserNotification;
-import np.com.esewa.learn.sampleapplication.thirdpartyservices.repository.UserNotificationRepository;
-import np.com.esewa.learn.sampleapplication.thirdpartyservices.resources.NotifyDto;
-import np.com.esewa.learn.sampleapplication.thirdpartyservices.resources.UserNotificationRequestDto;
+import np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.model.UserNotification;
+import np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.repository.UserNotificationRepository;
+import np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.resources.NotifyDto;
+import np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.resources.UserNotificationRequestDto;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

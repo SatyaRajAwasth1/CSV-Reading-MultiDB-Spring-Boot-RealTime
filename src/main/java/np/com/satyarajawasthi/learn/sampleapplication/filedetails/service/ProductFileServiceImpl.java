@@ -10,8 +10,8 @@ import np.com.esewa.learn.sampleapplication.filedetails.model.ProductFile;
 import np.com.esewa.learn.sampleapplication.filedetails.repository.ProductFileRepository;
 import np.com.esewa.learn.sampleapplication.inventory.model.Product;
 import np.com.esewa.learn.sampleapplication.inventory.service.ProductService;
-import np.com.esewa.learn.sampleapplication.thirdpartyservices.resources.NotifyDto;
-import np.com.esewa.learn.sampleapplication.thirdpartyservices.service.UserNotificationService;
+import np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.resources.NotifyDto;
+import np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.service.UserNotificationService;
 =======
 import np.com.satyarajawasthi.learn.sampleapplication.filedetails.dto.CountDto;
 import np.com.satyarajawasthi.learn.sampleapplication.filedetails.dto.FileDetailsRequestDto;
@@ -20,7 +20,6 @@ import np.com.satyarajawasthi.learn.sampleapplication.filedetails.model.FileStat
 import np.com.satyarajawasthi.learn.sampleapplication.filedetails.model.ProductFile;
 import np.com.satyarajawasthi.learn.sampleapplication.filedetails.repository.ProductFileRepository;
 import np.com.satyarajawasthi.learn.sampleapplication.inventory.model.Product;
-import np.com.satyarajawasthi.learn.sampleapplication.inventory.service.ProductService;
 >>>>>>> 1adee7a73aaf50255d30eb3d532c6450825ecd9a:src/main/java/np/com/satyarajawasthi/learn/sampleapplication/filedetails/service/ProductFileServiceImpl.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

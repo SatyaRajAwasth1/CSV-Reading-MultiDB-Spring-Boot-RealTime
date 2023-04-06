@@ -1,4 +1,4 @@
-package np.com.esewa.learn.sampleapplication.thirdpartyservices.config;
+package np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

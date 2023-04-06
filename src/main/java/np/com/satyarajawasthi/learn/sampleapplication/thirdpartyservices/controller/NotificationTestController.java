@@ -1,7 +1,7 @@
-package np.com.esewa.learn.sampleapplication.thirdpartyservices.controller;
+package np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.controller;
 
-import np.com.esewa.learn.sampleapplication.thirdpartyservices.resources.UserNotificationRequestDto;
-import np.com.esewa.learn.sampleapplication.thirdpartyservices.service.UserNotificationService;
+import np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.resources.UserNotificationRequestDto;
+import np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.service.UserNotificationService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

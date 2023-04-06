@@ -1,4 +1,4 @@
-package np.com.esewa.learn.sampleapplication.thirdpartyservices.resources;
+package np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.resources;
 
 import lombok.Getter;
 import lombok.Setter;

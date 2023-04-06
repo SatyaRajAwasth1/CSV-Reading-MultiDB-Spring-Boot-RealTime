@@ -1,4 +1,4 @@
-package np.com.esewa.learn.sampleapplication.thirdpartyservices.model;
+package np.com.satyarajawasthi.learn.sampleapplication.thirdpartyservices.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
