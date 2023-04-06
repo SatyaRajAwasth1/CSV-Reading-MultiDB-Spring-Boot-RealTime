@@ -24,7 +24,8 @@ public class UserNotificationServiceImpl implements UserNotificationService{
 
        long totalCount = notifyDto.getSUCCESS_COUNT()+notifyDto.getFAIL_COUNT();
        String notificationMessage = "Out of "+totalCount+" CSV data, " +
-               ""+notifyDto.getFAIL_COUNT()+" failed and "+notifyDto.getSUCCESS_COUNT()+"" +
+               ""+notifyDto.getFAIL_COUNT()+" failed " +
+               "and "+notifyDto.getSUCCESS_COUNT()+"" +
                " successfully added for "+notifyDto.getCsvFileName()+" file.";
        notifyDto.setNotificationMessage(notificationMessage);
 
