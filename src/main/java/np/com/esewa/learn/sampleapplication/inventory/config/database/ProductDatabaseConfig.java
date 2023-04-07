@@ -1,4 +1,4 @@
-package np.com.esewa.learn.sampleapplication.inventory.config;
+package np.com.esewa.learn.sampleapplication.inventory.config.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
