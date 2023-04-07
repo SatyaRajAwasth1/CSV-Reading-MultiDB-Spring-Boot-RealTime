@@ -9,6 +9,7 @@ import np.com.esewa.learn.sampleapplication.inventory.model.Product;
 import np.com.esewa.learn.sampleapplication.inventory.model.ProductStatus;
 import np.com.esewa.learn.sampleapplication.inventory.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -78,6 +79,11 @@ public class ProductServiceImpl implements ProductService {
         return countDto;
     }
 
+    /*
+    * set cache name to productByCodeCache and add caching at get request
+    * as cache is maintained in ConcurrentHashMap key will be productCode
+    */
+    @Cacheable(cacheNames = {"productByCodeCache"}, key = "productCode")
     @Override
     public ProductResponseDto getProductByCode(String productCode) {
         Product product = productRepository.findProductByCode(productCode);
