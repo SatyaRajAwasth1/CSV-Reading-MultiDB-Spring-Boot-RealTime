@@ -1,4 +1,4 @@
-package np.com.satyarajawasthi.learn.sampleapplication;
+package np.com.esewa.learn.sampleapplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
