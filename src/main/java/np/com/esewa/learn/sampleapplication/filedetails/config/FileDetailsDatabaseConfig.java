@@ -31,7 +31,7 @@ public class FileDetailsDatabaseConfig {
 
     @Bean
     @Primary
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         return new DriverManagerDataSource(
                 Objects.requireNonNull(environment.getProperty("spring.datasource.url")),
                 Objects.requireNonNull(environment.getProperty("spring.datasource.username")),
@@ -41,15 +41,15 @@ public class FileDetailsDatabaseConfig {
 
     @Bean(name = "productFileEntityManagerFactoryBean")
     @Primary
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
 
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         entityManagerFactoryBean.setPackagesToScan("np.com.esewa.learn.sampleapplication.filedetails.model");
 
-        Map<String , String > dbConnProperties = new HashMap<>();
-        dbConnProperties.put("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
+        Map<String, String> dbConnProperties = new HashMap<>();
+        dbConnProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         dbConnProperties.put("hibernate.hbm2ddl.auto", "update");
         dbConnProperties.put("hibernate.show_sql", "true");
 
@@ -60,7 +60,7 @@ public class FileDetailsDatabaseConfig {
 
     @Bean(name = "productFileTransactionManager")
     @Primary
-    public PlatformTransactionManager transactionManager(){
+    public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
         return transactionManager;

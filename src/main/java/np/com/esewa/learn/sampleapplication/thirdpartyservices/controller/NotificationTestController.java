@@ -15,12 +15,12 @@ public class NotificationTestController {
     }
 
     @GetMapping("/test")
-    String testNotify(){
+    String testNotify() {
         return "hello";
     }
 
     @PostMapping("notify/add")
-    void addUserNotiDetails(@RequestBody UserNotificationRequestDto userNotificationRequestDto){
+    void addUserNotiDetails(@RequestBody UserNotificationRequestDto userNotificationRequestDto) {
         userNotificationService.addUserNoti(userNotificationRequestDto);
     }
 

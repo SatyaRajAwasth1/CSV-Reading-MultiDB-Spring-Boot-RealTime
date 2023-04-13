@@ -3,8 +3,6 @@ package np.com.esewa.learn.sampleapplication.inventory.service;
 import np.com.esewa.learn.sampleapplication.filedetails.dto.CountDto;
 import np.com.esewa.learn.sampleapplication.inventory.aspects.EncryptProductName;
 import np.com.esewa.learn.sampleapplication.inventory.dto.ProductResponseDto;
-
-
 import np.com.esewa.learn.sampleapplication.inventory.model.Product;
 import np.com.esewa.learn.sampleapplication.inventory.model.ProductStatus;
 import np.com.esewa.learn.sampleapplication.inventory.repository.ProductRepository;
@@ -35,8 +33,8 @@ public class ProductServiceImpl implements ProductService {
 
             bufferedReader = new BufferedReader(new FileReader(filePath));
 
-            while ((line= bufferedReader.readLine()) != null){
-                String [] row = line.split(",");
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] row = line.split(",");
                 Product product = new Product();
                 // reading product derails form file
                 product.setName(row[0]);
@@ -69,9 +67,9 @@ public class ProductServiceImpl implements ProductService {
                     }
                 }
             }
-                product.setStatus(ProductStatus.ACTIVE);
-                productRepository.save(product);
-                SUCCESS_COUNT++;
+            product.setStatus(ProductStatus.ACTIVE);
+            productRepository.save(product);
+            SUCCESS_COUNT++;
         }
         countDto.setFAIL_COUNT(FAIL_COUNT);
         countDto.setSUCCESS_COUNT(SUCCESS_COUNT);
@@ -80,17 +78,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /*
-    * set cache name to productByCodeCache and add caching at get request
-    * as cache is maintained in ConcurrentHashMap key will be productCode
-    */
+     * set cache name to productByCodeCache and add caching at get request
+     * as cache is maintained in ConcurrentHashMap key will be productCode
+     */
     @Cacheable(cacheNames = {"productByCodeCache"}, key = "productCode")
     @Override
     public ProductResponseDto getProductByCode(String productCode) {
         Product product = productRepository.findProductByCode(productCode);
         ProductResponseDto responseProduct = new ProductResponseDto();
-        if (product!=null){
+        if (product != null) {
             responseProduct.setProductCode(product.getCode());
-            responseProduct.setProductName(Arrays.toString(Base64.getDecoder().decode(product.getName())));
+            responseProduct.setProductName(new String(Base64.getDecoder().decode(product.getName())));
             responseProduct.setQuantity(product.getQuantity());
             responseProduct.setPrice(product.getPrice());
         }

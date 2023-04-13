@@ -15,13 +15,15 @@ import java.util.List;
 public class EncryptProductNameAspect {
 
     @Pointcut("@annotation(np.com.esewa.learn.sampleapplication.inventory.aspects.EncryptProductName)")
-    void addProduct(){}
+    void addProduct() {
+    }
 
     @Pointcut("@annotation(np.com.esewa.learn.sampleapplication.inventory.aspects.DecryptProductName)")
-    void getProductByCode(){}
+    void getProductByCode() {
+    }
 
     @Before("addProduct()")
-    void encryptProductName(JoinPoint joinPoint){
+    void encryptProductName(JoinPoint joinPoint) {
         List<Product> productList = (List<Product>) joinPoint.getArgs()[0];
         // encoding the product names of all the product within list before saving
         for (Product product : productList) {
@@ -30,8 +32,8 @@ public class EncryptProductNameAspect {
     }
 
     @Before("getProductByCode()")
-    Product decryptProductName(JoinPoint joinPoint){
-         Product product = (Product) joinPoint.getArgs()[0];
+    Product decryptProductName(JoinPoint joinPoint) {
+        Product product = (Product) joinPoint.getArgs()[0];
         // encoding the product names of all the product within list before saving
         return null;
     }

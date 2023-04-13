@@ -21,12 +21,13 @@ import java.util.List;
 public class ProductFileServiceImpl implements ProductFileService {
 
     @Autowired
-    private  ProductFileRepository productFileRepository;
+    private ProductFileRepository productFileRepository;
     @Autowired
     private ProductService productService;
 
     @Autowired
     private UserNotificationService userNotificationService;
+
     @Override
     public void saveFile(FileDetailsRequestDto fileDetailsRequestDto) {
         ProductFile productFile = new ProductFile();
@@ -40,37 +41,38 @@ public class ProductFileServiceImpl implements ProductFileService {
     }
 
     @Override
-    public ProductFile getProductFile(Long id){
+    public ProductFile getProductFile(Long id) {
         return productFileRepository.getReferenceById(id);
     }
 
     @Override
-    public FileDetailsResponseDto getFileById(Long filePathId){
+    public FileDetailsResponseDto getFileById(Long filePathId) {
         FileDetailsResponseDto fileDetailsResponseDto = new FileDetailsResponseDto();
 
-        ProductFile productFile = productFileRepository.findById(filePathId) .orElseThrow();
+        ProductFile productFile = productFileRepository.findById(filePathId).orElseThrow();
         fileDetailsResponseDto.setFilePath(productFile.getFilePath());
         fileDetailsResponseDto.setStatus(productFile.getStatus());
 
         return fileDetailsResponseDto;
     }
 
-    @Scheduled(fixedRate = 120000) // repeats task automatically within 2 minutes
-    // use fixedDelay to repeat the task after two minutes of first task finished
-    // use fixedDelay with time of 1 minute or around to see the status pending, processing and completed for file config.
-    void processFile(){
+    @Scheduled(fixedRate = 120000)
+        // repeats task automatically within 2 minutes
+        // use fixedDelay to repeat the task after two minutes of first task finished
+        // use fixedDelay with time of 1 minute or around to see the status pending, processing and completed for file config.
+    void processFile() {
         List<ProductFile> productFileList = productFileRepository.findAllByStatus(FileStatus.PENDING);
         for (ProductFile productFile : productFileList) {
             productFile.setStatus(FileStatus.PROCESSING);
             productFileRepository.save(productFile); // save the updated file status
-           List<Product> productList = productService.readProductDataFromFile(productFile.getFilePath());
-           CountDto countDto = productService.addProduct(productList);
-           // updating count of success and fail
-           productFile.setFAIL_COUNT(countDto.getFAIL_COUNT());
-           productFile.setSUCCESS_COUNT(countDto.getSUCCESS_COUNT());
-           // file processing completed
-           productFile.setStatus(FileStatus.COMPLETED);
-           productFileRepository.save(productFile);
+            List<Product> productList = productService.readProductDataFromFile(productFile.getFilePath());
+            CountDto countDto = productService.addProduct(productList);
+            // updating count of success and fail
+            productFile.setFAIL_COUNT(countDto.getFAIL_COUNT());
+            productFile.setSUCCESS_COUNT(countDto.getSUCCESS_COUNT());
+            // file processing completed
+            productFile.setStatus(FileStatus.COMPLETED);
+            productFileRepository.save(productFile);
 
             NotifyDto notifyDto = new NotifyDto();
             notifyDto.setFAIL_COUNT(productFile.getFAIL_COUNT());

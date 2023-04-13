@@ -29,7 +29,7 @@ public class ProductDatabaseConfig {
     private Environment environment;
 
     @Bean(name = "productDataSource")
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         return new DriverManagerDataSource(
                 Objects.requireNonNull(environment.getProperty("product.datasource.url")),
                 Objects.requireNonNull(environment.getProperty("product.datasource.username")),
@@ -38,14 +38,14 @@ public class ProductDatabaseConfig {
     }
 
     @Bean(name = "productEntityManagerFactoryBean")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
 
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         entityManagerFactoryBean.setPackagesToScan("np.com.esewa.learn.sampleapplication.inventory.model");
 
-        Map<String , String > dbConnProperties = new HashMap<>();
+        Map<String, String> dbConnProperties = new HashMap<>();
         dbConnProperties.put("hibernate.hbm2ddl.auto", "update");
         dbConnProperties.put("hibernate.show_sql", "true");
         entityManagerFactoryBean.setJpaPropertyMap(dbConnProperties);
@@ -54,7 +54,7 @@ public class ProductDatabaseConfig {
     }
 
     @Bean(name = "productTransactionManager")
-    public PlatformTransactionManager transactionManager(){
+    public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
         return transactionManager;

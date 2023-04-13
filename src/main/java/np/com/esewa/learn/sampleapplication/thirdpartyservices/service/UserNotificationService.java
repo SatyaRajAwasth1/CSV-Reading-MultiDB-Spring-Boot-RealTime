@@ -5,5 +5,6 @@ import np.com.esewa.learn.sampleapplication.thirdpartyservices.resources.UserNot
 
 public interface UserNotificationService {
     void notify(NotifyDto notifyDto);
+
     void addUserNoti(UserNotificationRequestDto userNotificationRequestDto);
 }

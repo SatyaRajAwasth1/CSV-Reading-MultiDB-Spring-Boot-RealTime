@@ -9,11 +9,11 @@ import lombok.Setter;
 @Entity
 @Table(name = "third-party-services")
 public class UserNotification {
+    private final String type = "NOTIFY";
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String URL;
-    private final String type = "NOTIFY";
     private String userName;
     private String userPassword;
     @Column(name = "is_encrypted")

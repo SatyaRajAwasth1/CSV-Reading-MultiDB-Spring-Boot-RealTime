@@ -10,8 +10,10 @@ import java.util.List;
 public interface ProductService {
 
     List<Product> readProductDataFromFile(String filePath);
+
     CountDto addProduct(List<Product> productList);
 
     ProductResponseDto getProductByCode(String productCode);
+
     boolean deleteProduct(Long id);
 }
