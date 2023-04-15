@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -21,8 +22,11 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public List<Product> readProductDataFromFile(String filePath) {
@@ -85,14 +89,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponseDto getProductByCode(String productCode) {
         Product product = productRepository.findProductByCode(productCode);
-        ProductResponseDto responseProduct = new ProductResponseDto();
-        if (product != null) {
-            responseProduct.setProductCode(product.getCode());
-            responseProduct.setProductName(new String(Base64.getDecoder().decode(product.getName())));
-            responseProduct.setQuantity(product.getQuantity());
-            responseProduct.setPrice(product.getPrice());
-        }
-        return responseProduct;
+
+        return new ProductResponseDto(
+                Arrays.toString(Base64.getDecoder().decode(product.getName().getBytes())),
+                productCode,
+                product.getQuantity(),
+                product.getPrice()
+        );
     }
 
     @Override
